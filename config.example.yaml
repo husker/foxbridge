@@ -1,0 +1,36 @@
+# Copy to foxbridge.yaml for local development, or mount as /etc/foxbridge/config.yaml.
+# Use a sandbox Atlassian instance first. Never commit your completed configuration.
+atlassian:
+  platform: datacenter
+  base_url: "https://jira.example.com"
+  auth_method: pat
+  # Set these if the products run at separate addresses or context paths:
+  # confluence_url: "https://confluence.example.com"
+  # bitbucket_url: "https://bitbucket.example.com"
+  # browse_url: "https://jira.example.com"
+
+# Use a model with tool-calling support. For hosted providers, configure api_key.
+# Providers: anthropic, openai, azure_openai, ollama.
+ai:
+  provider: ollama
+  base_url: "http://localhost:11434"
+  model: "llama3.1"
+  # In Docker on macOS/Windows, use http://host.docker.internal:11434 instead.
+  # api_key: "replace-with-your-provider-key"
+
+# Explicitly enable writes only after reviewing the available tools.
+features:
+  jira: { read: true, write: false }
+  confluence: { read: true, write: false }
+  bitbucket: { read: false, write: false }
+  assets: { read: false, write: false }
+
+# Best-effort scrubbing of supported patterns in tool output, not complete DLP.
+scrub_pii: true
+
+# Local HTTP development only. Set false behind HTTPS for Secure cookies.
+# This setting does not disable Atlassian authentication.
+dev_mode: true
+port_chat: 3000
+port_mcp: 3001
+log_level: info

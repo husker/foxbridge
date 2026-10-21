@@ -1,0 +1,23 @@
+{
+  "name": "@foxbridge/mcp-servers",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./transport/http": "./dist/transport/http.js"
+  },
+  "scripts": {
+    "build": "tsc -b"
+  },
+  "dependencies": {
+    "@foxbridge/atlassian": "*",
+    "@foxbridge/config": "*",
+    "@foxbridge/scrubber": "*",
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "zod": "^3.24.0"
+  },
+  "license": "MIT"
+}

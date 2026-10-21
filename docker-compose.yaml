@@ -1,0 +1,27 @@
+services:
+  foxbridge:
+    build: .
+    ports:
+      - "127.0.0.1:${FOXBRIDGE_CHAT_PORT:-3000}:3000"
+      - "127.0.0.1:${FOXBRIDGE_MCP_PORT:-3001}:3001"
+    volumes:
+      # Option 1: Mount a pre-made config file (existing users, IaC deployments)
+      # Uncomment the line below and create config.yaml first:
+      # - ./config.yaml:/etc/foxbridge/config.yaml:ro
+      #
+      # Option 2: Use the setup wizard (new users)
+      # Just start the container and visit http://localhost:3000
+      # The wizard writes config to /var/lib/foxbridge/config.yaml on the data volume.
+      - foxbridge-data:/var/lib/foxbridge
+    # environment:
+    #   # Force a specific config path (overrides all auto-discovery):
+    #   - FOXBRIDGE_CONFIG=/etc/foxbridge/config.yaml
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/healthz"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  foxbridge-data:

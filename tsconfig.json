@@ -1,0 +1,10 @@
+{
+  "files": [],
+  "references": [
+    { "path": "packages/config" },
+    { "path": "packages/atlassian" },
+    { "path": "packages/scrubber" },
+    { "path": "packages/mcp-servers" },
+    { "path": "packages/chat-backend" }
+  ]
+}

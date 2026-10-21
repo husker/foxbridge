@@ -1,0 +1,31 @@
+{
+  "name": "foxbridge",
+  "version": "0.2.1",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "tsc -b && npm run build -w @foxbridge/chat-ui",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "clean": "tsc -b --clean",
+    "typecheck": "tsc -b && tsc --noEmit -p packages/chat-ui/tsconfig.json",
+    "start": "node packages/chat-backend/dist/index.js"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/node": "^25.5.0",
+    "@vitejs/plugin-react": "^4.4.0",
+    "jsdom": "^29.1.1",
+    "typescript": "^5.7.0",
+    "vitest": "^4.1.12"
+  },
+  "description": "Self-hosted MCP tools and AI chat for Atlassian workflows",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "license": "MIT"
+}
